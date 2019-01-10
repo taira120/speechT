@@ -88,7 +88,7 @@ class SingleInputLoader(BaseInputLoader):
     self.speech_input = None
     batch_size = 1
 
-    with tf.device("/cpu:0"):
+    with tf.device("/gpu:0"):
       # inputs is of dimension [batch_size, max_time, input_size]
       self.inputs = tf.placeholder(tf.float32, [batch_size, None, input_size], name='inputs')
       self.sequence_lengths = tf.placeholder(tf.int32, [batch_size], name='sequence_lengths')
@@ -139,7 +139,7 @@ class InputBatchLoader(BaseInputLoader):
     self.data_generator_creator = data_generator_creator
     self.steps_left = max_steps
 
-    with tf.device("/cpu:0"):
+    with tf.device("/gpu:0"):
       # Define input and label placeholders
       # inputs is of dimension [batch_size, max_time, input_size]
       self.inputs = tf.placeholder(tf.float32, [batch_size, None, input_size], name='inputs')
@@ -161,7 +161,7 @@ class InputBatchLoader(BaseInputLoader):
     """
     Return's tensors for inputs, sequence_lengths and labels
     """
-    with tf.device("/cpu:0"):
+    with tf.device("/gpu:0"):
       inputs, sequence_lengths, labels = self.queue.dequeue()
       labels = tf.deserialize_many_sparse(labels, dtype=tf.int32)
     return inputs, sequence_lengths, labels
