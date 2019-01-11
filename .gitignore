@@ -95,3 +95,6 @@ ENV/
 /data/
 /train/
 /log/
+
+# data
+speechT-weights.tgz
