@@ -13,29 +13,21 @@
 # limitations under the License.
 # ==============================================================================
 
-APOSTROPHE = 26
-SPACE_ID = 27
+OFFSET = ord('ぁ')
 
-A_ASCII_CODE = ord('a')
-
-SIZE = 28
-
+SIZE = 84 # https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_3000-3FFF ぁ-ゔ
 
 def letter_to_id(letter):
   """
   Converts `letter` to vocabulary id
 
   Args:
-    letter: letter to convert, allowed is a-z, apostrophe and space
+    letter: letter to convert, allowed ir hiragana
 
   Returns: the vocabulary encoded letter
 
   """
-  if letter == ' ':
-    return SPACE_ID
-  if letter == '\'':
-    return APOSTROPHE
-  return ord(letter) - A_ASCII_CODE
+  return ord(letter) - OFFSET
 
 
 def id_to_letter(identifier):
@@ -48,11 +40,7 @@ def id_to_letter(identifier):
   Returns: the character letter
 
   """
-  if identifier == SPACE_ID:
-    return ' '
-  if identifier == APOSTROPHE:
-    return '\''
-  return chr(identifier + A_ASCII_CODE)
+  return chr(identifier + OFFSET)
 
 
 def sentence_to_ids(sentence):
@@ -65,7 +53,7 @@ def sentence_to_ids(sentence):
   Returns: list of ints (encoded characters)
 
   """
-  return [letter_to_id(letter) for letter in sentence.lower()]
+  return [letter_to_id(letter) for letter in sentence]
 
 
 def ids_to_sentence(identifiers):
