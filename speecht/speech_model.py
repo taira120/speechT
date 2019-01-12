@@ -272,7 +272,7 @@ class Wav2LetterModel(SpeechModel):
   def __init__(self, input_loader: BaseInputLoader, input_size: int, num_classes: int):
     super().__init__(input_loader, input_size, num_classes)
 
-  def _create_network(self, num_classes):
+  def _create_network(self, num_classes): # num_classes = 85 (if for japanese)
     # The first layer scales up from input_size channels to 250 channels
     # One striding layer of output size [batch_size, max_time / 2, 250]
     outputs, channels = self._convolution(self.inputs, 48, 2, self.input_size, 250)
