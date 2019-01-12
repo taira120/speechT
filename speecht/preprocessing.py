@@ -152,7 +152,7 @@ class SpeechCorpusReader:
 
     # Create the transcript dictionary
     transcript_dict = dict()
-    for splitted in self._get_transcript_entries(self._data_directory):
+    for splitted in self._get_transcript_entries(self._data_directory): # _data_directory defaults to 'data'
       transcript_dict[splitted[0]] = speecht.vocabulary.sentence_to_ids(splitted[1])
 
     return transcript_dict
@@ -224,7 +224,8 @@ class SpeechCorpusReader:
     if not os.path.exists(out_directory):
       os.makedirs(out_directory)
 
-    audio_files = list(iglob_recursive(self._data_directory + '/' + directory, '*.flac'))
+    # audio_files = list(iglob_recursive(self._data_directory + '/' + directory, '*.flac'))
+    audio_files = list(iglob_recursive(self._data_directory + '/' + directory, '*.wav')) # _data_directory defaults to 'data', directory defaults to 'train'
 
     with Pool(processes=multiprocessing.cpu_count()) as pool:
 
