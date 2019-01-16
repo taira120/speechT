@@ -43,7 +43,8 @@ class Training(DatasetExecutor):
 
   def run(self):
 
-    with tf.Session() as sess:
+    config = tf.ConfigProto(allow_soft_placement = True)
+    with tf.Session(config=config) as sess:
 
       model = self.create_model(sess)
       coord = self.start_pipeline(sess, n_threads=2)
