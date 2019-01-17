@@ -85,7 +85,8 @@ class Training(DatasetExecutor):
             previous_losses.append(loss)
 
             # Save checkpoint and zero timer and loss.
-            checkpoint_path = os.path.join(self.flags.run_train_dir, "speechT.ckpt")
+            # checkpoint_path = os.path.join(self.flags.run_train_dir, "speechT.ckpt")
+            checkpoint_path = os.path.join('/content/drive/My\ Drive/workspace/params/', 'speechT.ckpt')
             model.saver.save(sess, checkpoint_path, global_step=model.global_step)
             print('Model saved')
             step_time, loss = 0.0, 0.0
