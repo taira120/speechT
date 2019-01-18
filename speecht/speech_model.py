@@ -123,7 +123,7 @@ j
 
     # Create summary writers
     self.merged_summaries = tf.summary.merge_all()
-    self.summary_writer = tf.summary.FileWriter('{}/{}_{}'.format(log_dir, run_name, run_type))
+    self.summary_writer = tf.summary.FileWriter('/content/drive/My Drive/workspace/{}/{}_{}'.format(log_dir, run_name, run_type))
 
   def _convolution(self, value, filter_width, stride, input_channels, out_channels, apply_non_linearity=True):
     """
