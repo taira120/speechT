@@ -85,7 +85,8 @@ class Evaluation(DatasetExecutor):
 
     stats = EvalStatistics()
 
-    with tf.Session() as sess:
+    config = tf.ConfigProto(allow_soft_placement = True)
+    with tf.Session(config=config) as sess:
 
       model = self.create_model(sess)
 
